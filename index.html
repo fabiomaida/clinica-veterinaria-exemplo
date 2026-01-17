@@ -67,12 +67,15 @@
 
   <!-- Atividade 2 -->
   <section>
-    <h2>Valor da consulta</h2>
-    <input id="idadePet" type="number" placeholder="Idade do pet">
-    <input id="valorConsulta" type="number" placeholder="Valor da consulta">
-    <button onclick="calcularDesconto()">Calcular</button>
-    <div id="resDesconto" class="resultado"></div>
-  </section>
+  <h2>Atividade 2 - Desconto</h2>
+  <p>Valor da consulta: R$ 250,00<br>
+  Pets idosos têm desconto ✨🤩</p>
+  
+  <input id="idadePet" type="number" placeholder="Idade do pet">
+  <button onclick="calcularDesconto()">Calcular</button>
+  <div id="resDesconto" class="resultado"></div>
+</section>
+
 
   <!-- Atividade 3 -->
   <section>
@@ -114,12 +117,18 @@
     }
 
     // Atividade 2
-    function calcularDesconto() {
-      const idade = parseInt(document.getElementById("idadePet").value);
-      const valor = parseFloat(document.getElementById("valorConsulta").value);
-      let valorFinal = idade > 10 ? valor - 15 : valor;
-      document.getElementById("resDesconto").innerText =
-        `Valor da consulta: R$ ${valorFinal.toFixed(2)}`;
+function calcularDesconto() {
+  const idade = parseInt(document.getElementById("idadePet").value);
+  const valor = 250; // valor fixo
+  let valorFinal = idade > 10 ? valor - 15 : valor;
+  document.getElementById("resDesconto").innerText =
+    idade > 10 
+      ? `Valor final com desconto: R$ ${valorFinal.toFixed(2)}`
+      : `Valor final: R$ ${valorFinal.toFixed(2)}`;
+}
+
+}
+
     }
 
     // Atividade 3
