@@ -67,18 +67,16 @@
 
   <!-- Atividade 2 -->
   <section>
-  <h2>Atividade 2 - Desconto</h2>
-  <p>Valor da consulta: R$ 250,00<br>
-  Pets idosos têm desconto ✨🤩</p>
-  
-  <input id="idadePet" type="number" placeholder="Idade do pet">
-  <button onclick="calcularDesconto()">Calcular</button>
-  
-  <!-- Aqui é onde o JavaScript escreve a mensagem -->
-  <div id="resDesconto" class="resultado"></div>
-</section>
-
-
+    <h2>Atividade 2 - Desconto</h2>
+    <p>Valor da consulta: R$ 250,00<br>
+    Pets idosos têm desconto ✨🤩</p>
+    
+    <input id="idadePet" type="number" placeholder="Idade do pet">
+    <button onclick="calcularDesconto()">Calcular</button>
+    
+    <!-- Resultado aparece aqui -->
+    <div id="resDesconto" class="resultado"></div>
+  </section>
 
   <!-- Atividade 3 -->
   <section>
@@ -120,18 +118,13 @@
     }
 
     // Atividade 2
-function calcularDesconto() {
-  const idade = parseInt(document.getElementById("idadePet").value);
-  const valor = 250; // valor fixo
-  let valorFinal = idade > 10 ? valor - 15 : valor;
+    function calcularDesconto() {
+      const idade = parseInt(document.getElementById("idadePet").value);
+      const valor = 250; // valor fixo
+      let valorFinal = idade > 10 ? valor - 15 : valor;
 
-  document.getElementById("resDesconto").innerText =
-    `Pague R$ ${valorFinal.toFixed(2)} nessa consulta`;
-}
-
-
-}
-
+      document.getElementById("resDesconto").innerText =
+        `Pague R$ ${valorFinal.toFixed(2)} nessa consulta`;
     }
 
     // Atividade 3
@@ -177,5 +170,3 @@ function calcularDesconto() {
 </body>
 </html>
 
-</body>
-</html>
