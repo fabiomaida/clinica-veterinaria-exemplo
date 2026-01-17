@@ -73,8 +73,11 @@
   
   <input id="idadePet" type="number" placeholder="Idade do pet">
   <button onclick="calcularDesconto()">Calcular</button>
+  
+  <!-- Aqui é onde o JavaScript escreve a mensagem -->
   <div id="resDesconto" class="resultado"></div>
 </section>
+
 
 
   <!-- Atividade 3 -->
@@ -125,6 +128,7 @@ function calcularDesconto() {
   document.getElementById("resDesconto").innerText =
     `Pague R$ ${valorFinal.toFixed(2)} nessa consulta`;
 }
+
 
 }
 
