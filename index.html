@@ -121,10 +121,9 @@ function calcularDesconto() {
   const idade = parseInt(document.getElementById("idadePet").value);
   const valor = 250; // valor fixo
   let valorFinal = idade > 10 ? valor - 15 : valor;
+
   document.getElementById("resDesconto").innerText =
-    idade > 10 
-      ? `Valor final com desconto: R$ ${valorFinal.toFixed(2)}`
-      : `Valor final: R$ ${valorFinal.toFixed(2)}`;
+    `Pague R$ ${valorFinal.toFixed(2)} nessa consulta`;
 }
 
 }
