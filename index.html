@@ -166,30 +166,11 @@
     }
 
     // Atividade 5
-function calcularFila() {
-  const fila = parseInt(document.getElementById("filaPets").value);
-  let tempo = fila > 0 ? fila * 30 : 0; // cada pet = 30 minutos
-
-  if (tempo > 0) {
-    const horas = Math.floor(tempo / 60);      // parte inteira das horas
-    const minutos = tempo % 60;                // resto em minutos
-
-    let mensagem = "Tempo estimado de espera: ";
-    if (horas > 0) mensagem += `${horas}h `;
-    if (minutos > 0) mensagem += `${minutos}min`;
-
-    document.getElementById("resFila").innerText = mensagem;
-  } else {
-    document.getElementById("resFila").innerText =
-      "Sem fila! Atendimento imediato (menos de 30 minutos).";
-  }
-  
-
-}
-    function gerarRelatorio() {
+function gerarRelatorio() {
   const tutor = document.getElementById("tutor").value || "não informado";
   const pet = document.getElementById("pet").value || "não informado";
   const idade = parseInt(document.getElementById("idadePet").value) || 0;
+  const fila = parseInt(document.getElementById("filaPets").value) || 0;
 
   // Valor fixo da consulta
   const valor = 250;
@@ -207,6 +188,20 @@ function calcularFila() {
   else if (idade > 2) idadeHumana = 24 + (idade - 2) * 5;
   else idadeHumana = "não informada";
 
+  // Tempo de espera na fila
+  let tempo = fila > 0 ? fila * 30 : 0;
+  let tempoMsg = "";
+  if (tempo > 0) {
+    const horas = Math.floor(tempo / 60);
+    const minutos = tempo % 60;
+    tempoMsg = "Você esperou ";
+    if (horas > 0) tempoMsg += `${horas}h `;
+    if (minutos > 0) tempoMsg += `${minutos}min`;
+    tempoMsg += " na fila.";
+  } else {
+    tempoMsg = "Sem fila! Atendimento imediato.";
+  }
+
   // Data e hora atuais
   const agora = new Date();
   const dia = agora.toLocaleDateString("pt-BR");
@@ -218,6 +213,7 @@ function calcularFila() {
 A consulta do(a) ${pet} foi agendada com sucesso no dia ${dia} às ${hora};
 O valor da consulta foi R$ ${valorFinal.toFixed(2)}${descontoMsg};
 Você descobriu que se o(a) ${pet} fosse um "serumaninho", teria ${idadeHumana} anos.
+${tempoMsg}
 
 A Tio Vet agradece a sua confiança, até a próxima!
 Não se esqueça de agendar o retorno que já está incluso no valor pago desta consulta!`;
@@ -227,6 +223,7 @@ Não se esqueça de agendar o retorno que já está incluso no valor pago desta 
   // Opcional: abrir janela de impressão
   // window.print();
 }
+
 
   </script>
 </body>
