@@ -10,64 +10,160 @@
       background: #f5f5f5;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
-    header {
+    header, footer {
+      text-align: center;
+      padding: 20px;
       background: #4CAF50;
       color: white;
-      padding: 20px;
     }
     section {
-      margin: 20px;
-      padding: 20px;
+      margin: 15px;
+      padding: 15px;
       background: white;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
-    h2 {
-      color: #4CAF50;
+    input, button {
+      margin: 5px;
+      padding: 8px;
     }
-    footer {
-      background: #333;
+    .resultado {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    .progress-container {
+      width: 100%;
+      background: #ddd;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 20px;
+      background: #4CAF50;
+      border-radius: 8px;
+      text-align: center;
       color: white;
-      padding: 10px;
-      margin-top: 20px;
+      font-size: 12px;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>🐶 Tio Vet - Clínica Veterinária 😺</h1>
-    <p>Sistema desenvolvido em C# como prova prática</p>
+    <p>Sistema interativo desenvolvido em HTML + JavaScript</p>
   </header>
 
+  <!-- Atividade 1 -->
   <section>
-    <h2>Atividade 1</h2>
-    <p>Cadastro de tutor e pet + confirmação de agendamento.</p>
+    <h2>Atividade 1 - Agendamento</h2>
+    <input id="tutor" placeholder="Nome do tutor">
+    <input id="pet" placeholder="Nome do pet">
+    <button onclick="agendar()">Agendar</button>
+    <div id="resAgendamento" class="resultado"></div>
   </section>
 
+  <!-- Atividade 2 -->
   <section>
-    <h2>Atividade 2</h2>
-    <p>Desconto de R$15,00 para pets com mais de 10 anos.</p>
+    <h2>Atividade 2 - Desconto</h2>
+    <input id="idadePet" type="number" placeholder="Idade do pet">
+    <input id="valorConsulta" type="number" placeholder="Valor da consulta">
+    <button onclick="calcularDesconto()">Calcular</button>
+    <div id="resDesconto" class="resultado"></div>
   </section>
 
+  <!-- Atividade 3 -->
   <section>
-    <h2>Atividade 3</h2>
-    <p>Simulação do tempo de atendimento e progresso da consulta.</p>
+    <h2>Atividade 3 - Progresso da Consulta</h2>
+    <button onclick="simularProgresso()">Iniciar Consulta</button>
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar">0%</div>
+    </div>
+    <div id="resProgresso" class="resultado"></div>
   </section>
 
+  <!-- Atividade 4 -->
   <section>
-    <h2>Atividade 4</h2>
-    <p>Conversão da idade do pet para idade humana.</p>
+    <h2>Atividade 4 - Idade Humana</h2>
+    <input id="idadePetHumana" type="number" placeholder="Idade do pet">
+    <button onclick="converterIdade()">Converter</button>
+    <div id="resIdadeHumana" class="resultado"></div>
   </section>
 
+  <!-- Atividade 5 -->
   <section>
-    <h2>Atividade 5</h2>
-    <p>Controle da fila de atendimento com cálculo de tempo de espera.</p>
+    <h2>Atividade 5 - Fila de Atendimento</h2>
+    <input id="filaPets" type="number" placeholder="Número de pets na fila">
+    <button onclick="calcularFila()">Calcular</button>
+    <div id="resFila" class="resultado"></div>
   </section>
 
   <footer>
     <p>Desenvolvido por Fábio Maida 🚀</p>
   </footer>
+
+  <script>
+    // Atividade 1
+    function agendar() {
+      const tutor = document.getElementById("tutor").value;
+      const pet = document.getElementById("pet").value;
+      document.getElementById("resAgendamento").innerText =
+        `Olá, ${tutor}! A consulta do ${pet} foi agendada com sucesso.`;
+    }
+
+    // Atividade 2
+    function calcularDesconto() {
+      const idade = parseInt(document.getElementById("idadePet").value);
+      const valor = parseFloat(document.getElementById("valorConsulta").value);
+      let valorFinal = idade > 10 ? valor - 15 : valor;
+      document.getElementById("resDesconto").innerText =
+        `Valor da consulta: R$ ${valorFinal.toFixed(2)}`;
+    }
+
+    // Atividade 3
+    function simularProgresso() {
+      let progresso = 0;
+      const bar = document.getElementById("progressBar");
+      const res = document.getElementById("resProgresso");
+      res.innerText = "🏥 Consulta em andamento...";
+      const intervalo = setInterval(() => {
+        progresso++;
+        bar.style.width = progresso + "%";
+        bar.innerText = progresso + "%";
+        if (progresso === 25) res.innerText = "Estamos apenas começando!";
+        if (progresso === 50) res.innerText = "Metade do caminho!";
+        if (progresso === 75) res.innerText = "Quase lá!";
+        if (progresso >= 100) {
+          clearInterval(intervalo);
+          res.innerText = "🐶😺 Consulta concluída com sucesso!";
+        }
+      }, 100); // 100ms = animação rápida
+    }
+
+    // Atividade 4
+    function converterIdade() {
+      const idade = parseInt(document.getElementById("idadePetHumana").value);
+      let idadeHumana;
+      if (idade === 1) idadeHumana = 15;
+      else if (idade === 2) idadeHumana = 15 + 9;
+      else idadeHumana = 15 + 9 + (idade - 2) * 5;
+      document.getElementById("resIdadeHumana").innerText =
+        `Idade equivalente em anos humanos: ${idadeHumana}`;
+    }
+
+    // Atividade 5
+    function calcularFila() {
+      const fila = parseInt(document.getElementById("filaPets").value);
+      let tempo = fila > 0 ? fila * 30 : 0;
+      document.getElementById("resFila").innerText =
+        tempo > 0 ? `Tempo estimado de espera: ${tempo} minutos`
+                  : "Sem fila! Atendimento imediato (menos de 30 minutos).";
+    }
+  </script>
+</body>
+</html>
+
 </body>
 </html>
