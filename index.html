@@ -166,6 +166,27 @@
     }
 
     // Atividade 5
+function calcularFila() {
+  const fila = parseInt(document.getElementById("filaPets").value);
+  let tempo = fila > 0 ? fila * 30 : 0; // cada pet = 30 minutos
+
+  if (tempo > 0) {
+    const horas = Math.floor(tempo / 60);      // parte inteira das horas
+    const minutos = tempo % 60;                // resto em minutos
+
+    let mensagem = "Tempo estimado de espera: ";
+    if (horas > 0) mensagem += `${horas}h `;
+    if (minutos > 0) mensagem += `${minutos}min`;
+
+    document.getElementById("resFila").innerText = mensagem;
+  } else {
+    document.getElementById("resFila").innerText =
+      "Sem fila! Atendimento imediato (menos de 30 minutos).";
+  }
+}
+
+
+    // Atividade 6
 function gerarRelatorio() {
   const tutor = document.getElementById("tutor").value || "não informado";
   const pet = document.getElementById("pet").value || "não informado";
