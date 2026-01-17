@@ -104,6 +104,13 @@
     <div id="resFila" class="resultado"></div>
   </section>
 
+  <section>
+  <h2>Relatório do Atendimento</h2>
+  <button onclick="gerarRelatorio()">Gerar Relatório</button>
+  <div id="resRelatorio" class="resultado"></div>
+</section>
+
+
   <footer>
     <p>Desenvolvido por Fábio Maida 🚀</p>
   </footer>
@@ -176,6 +183,49 @@ function calcularFila() {
     document.getElementById("resFila").innerText =
       "Sem fila! Atendimento imediato (menos de 30 minutos).";
   }
+  
+
+}
+    function gerarRelatorio() {
+  const tutor = document.getElementById("tutor").value || "não informado";
+  const pet = document.getElementById("pet").value || "não informado";
+  const idade = parseInt(document.getElementById("idadePet").value) || 0;
+
+  // Valor fixo da consulta
+  const valor = 250;
+  let valorFinal = valor;
+  let descontoMsg = "";
+  if (idade > 10) {
+    valorFinal = valor - 15;
+    descontoMsg = " (recebeu o desconto de R$15,00 pela idade do pet)";
+  }
+
+  // Idade humana equivalente
+  let idadeHumana;
+  if (idade === 1) idadeHumana = 15;
+  else if (idade === 2) idadeHumana = 24;
+  else if (idade > 2) idadeHumana = 24 + (idade - 2) * 5;
+  else idadeHumana = "não informada";
+
+  // Data e hora atuais
+  const agora = new Date();
+  const dia = agora.toLocaleDateString("pt-BR");
+  const hora = agora.toLocaleTimeString("pt-BR");
+
+  const relatorio = 
+`📋 Resumo do atendimento:
+
+A consulta do(a) ${pet} foi agendada com sucesso no dia ${dia} às ${hora};
+O valor da consulta foi R$ ${valorFinal.toFixed(2)}${descontoMsg};
+Você descobriu que se o(a) ${pet} fosse um "serumaninho", teria ${idadeHumana} anos.
+
+A Tio Vet agradece a sua confiança, até a próxima!
+Não se esqueça de agendar o retorno que já está incluso no valor pago desta consulta!`;
+
+  document.getElementById("resRelatorio").innerText = relatorio;
+
+  // Opcional: abrir janela de impressão
+  // window.print();
 }
 
   </script>
